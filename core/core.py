@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import math
-from dataprocess import get_data_loader_bert_prompt
+from process.dataprocess import get_data_loader_bert_prompt
 import numpy as np
 from sklearn.cluster import KMeans
 

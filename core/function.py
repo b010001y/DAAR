@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from dataprocess import get_data_loader_bert_prompt
+from process.dataprocess import get_data_loader_bert_prompt
 import torch.optim as optim
 import numpy as np
 import copy
@@ -184,22 +184,7 @@ def eval_model(config, basemodel, test_set):
         # The distance is regarded as the score, which belongs to the prototype with the smallest distance
         distances = basemodel.get_mem_feature(rep)
         short_logits = distances
-        # print(short_logits[0])
-        # print(logits.shape)  ## 30*81
-        # print(short_logits.shape) ## 30*81
-        # print(labels.shape) ## 30*81
-        # print(labels)
-        # print(neg_labels)
-        # allnum += labels.shape[0]
-        # short_logits = torch.from_numpy(short_logits)
-        # short_logits = short_logits.to(config['device'])
-        # predict_res = torch.argmax(short_logits, dim=1)
-        # predict_res = predict_res.view(-1, 1)
-        # labels = labels.view(-1, 1)
-        # labels = labels.to(config['device'])
-        # correct_predictions = torch.eq(labels, predict_res)
-        # num_correct = torch.sum(correct_predictions).item()
-        # correctnum += num_correct
+
         for index, logit in enumerate(logits): # 30*81, 30 batchsize, 81 class_count
             # n-th testdata score, 1*81
             score = short_logits[index]  # logits[index] + short_logits[index] + long_logits[index]
